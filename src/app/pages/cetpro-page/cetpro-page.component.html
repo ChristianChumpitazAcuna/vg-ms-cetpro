@@ -12,25 +12,28 @@
 
                 <div class="inline-flex gap-x-2">
                     <input (input)="searchData()" type="text"
-                        class="w-96 h-10 px-3 rounded-3xl border-2 border-gray-300 text-black focus:outline-none focus:border-blue-500"
+                        class="w-96 h-10 px-3 rounded-3xl border-2 border-gray-100 text-black focus:outline-none focus:border-blue-300"
                         placeholder="Buscar por nombre" [(ngModel)]="searchTerm" />
 
-                    <button (click)="searchData()" class="bg-blue-700 hover:bg-blue-800  py-2 px-4 rounded-3xl">
-                        Buscar
+                    <button (click)="searchData()" class="bg-blue-500 hover:bg-blue-600 px-3 rounded-full group">
+                        <app-icons name="search" />
+                    </button>
+
+                    <button (click)="onShowForm()"
+                        class="inline-flex items-center gap-x-2 bg-blue-500 hover:bg-blue-600 px-3 rounded-full group">
+                        <app-icons name="plus" /> Nuevo
                     </button>
                 </div>
 
                 <div class="inline-flex gap-x-2">
-                    <button (click)="onShowForm()" class="bg-blue-700 hover:bg-blue-800  py-2 px-4 rounded-3xl">
-                        Nuevo
-                    </button>
-                    <button (click)="fetchDataActive()" class="bg-blue-700 hover:bg-blue-800  py-2 px-4 rounded-3xl">
-                        Mostrar Inactivos
+                    <button *ngIf="!showBtn" (click)="fetchDataActive()"
+                        class="inline-flex items-center gap-x-2 bg-blue-500 hover:bg-blue-600  py-2 px-4 rounded-3xl group">
+                        <app-icons name="backup" /> Restaurar
                     </button>
 
                     <button *ngIf="showBtn" (click)="fetchData()"
-                        class="bg-blue-700  hover:bg-blue-800 px-3 py-2 rounded-full">
-                        <app-icons name="back" />
+                        class="bg-blue-500  hover:bg-blue-600 p-2 rounded-full group">
+                        <app-icons name="back" /> 
                     </button>
                 </div>
 
