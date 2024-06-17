@@ -8,22 +8,32 @@ import { ListCetproComponent } from './components/Cetpro/list-cetpro/list-cetpro
 import { CetproPageComponent } from './pages/cetpro-page/cetpro-page.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormCetproComponent } from './components/Cetpro/form-cetpro/form-cetpro.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { IconsComponent } from './ui/icons/icons.component';
+import { ToastrModule } from 'ngx-toastr';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     ListCetproComponent,
     CetproPageComponent,
-    FormCetproComponent
+    FormCetproComponent,
+    IconsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule,
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: 'toast-top-right',
+    }),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+
 })
 export class AppModule { }

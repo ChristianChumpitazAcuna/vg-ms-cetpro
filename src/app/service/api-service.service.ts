@@ -22,8 +22,8 @@ export class ApiService {
     return this.http.post<Cetpro>(`${this.baseUrl}/create`, data);
   }
 
-  updateData(data: Cetpro): Observable<Cetpro> {
-    return this.http.put<Cetpro>(`${this.baseUrl}/update`, data);
+  updateData(id: string, data: Cetpro): Observable<Cetpro> {
+    return this.http.put<Cetpro>(`${this.baseUrl}/update/${id}`, data);
   }
 
   deleteData(id: string): Observable<Cetpro> {

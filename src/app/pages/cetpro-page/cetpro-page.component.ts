@@ -9,6 +9,12 @@ import { ApiService } from 'src/app/service/api-service.service';
   ]
 })
 export class CetproPageComponent implements OnInit {
+  list: Cetpro[] = [];
+  selectedItem: Cetpro | null = null;
+  showForm: boolean = false;
+  editMode: boolean = false;
+  showBtn: boolean = false;
+  searchTerm: string = '';
 
   constructor(
     private apiService: ApiService
@@ -18,15 +24,56 @@ export class CetproPageComponent implements OnInit {
     this.fetchData();
   }
 
-  cetproList: Cetpro[] = [];
+  searchData() {
+    this.fetchData(this.searchTerm);
+  }
 
-  fetchData(): void {
+  filterData(data: Cetpro[], searchTerm: string): Cetpro[] {
+    return data.filter(item =>
+      item.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  }
+
+  fetchData(searchTerm: string = ''): void {
+    this.showBtn = false;
     this.apiService.getData('active').subscribe(
       (data: Cetpro[]) => {
-        this.cetproList = data;
-        console.log(this.cetproList);
+        this.list = searchTerm ? this.filterData(data, searchTerm) : data;
       }
     );
+  }
+
+  fetchDataActive(): void {
+    this.showBtn = true;
+    this.apiService.getData('inactive').subscribe(
+      (data: Cetpro[]) => {
+        this.list = data;
+      }
+    );
+  }
+
+  onEditItem(item: Cetpro) {
+    this.selectedItem = item;
+    this.showForm = true;
+    this.editMode = true;
+  }
+
+  onShowForm() {
+    this.selectedItem = null;
+    this.showForm = true;
+    this.editMode = false;
+  }
+
+  onCloseForm() {
+    this.showForm = false;
+  }
+
+  refreshData(state: string) {
+    if (state === 'deleted') {
+      this.fetchData();
+    } else if (state === 'restored') {
+      this.fetchDataActive();
+    }
   }
 
 }
