@@ -1,13 +1,13 @@
 <section class="w-full indent-4 h-full fixed inset-0 flex items-center bg-zinc-900/35">
     <form class="flex flex-col w-2/6 m-auto bg-white rounded-3xl shadow-xl" [formGroup]="form" (ngSubmit)="onSubmit()">
-        <section class="text-center w-4/6 bg-blue-700 rounded-br-3xl py-2 shadow-xl">
+        <section class="text-center w-4/6 bg-blue-500 rounded-br-3xl py-2 shadow-xl">
             <h2 class="text-xl font-medium text-white">{{ editMode ? 'Editar CETPRO' : 'Nuevo CETPRO' }}</h2>
         </section>
 
         <section class="p-4">
 
             <div class="mb-4">
-                <label class="block text-blue-700 font-bold mb-2">Nombre:</label>
+                <label class="block text-blue-400 font-bold mb-2">Nombre:</label>
                 <input type="text" class="bg-gray-100 rounded-2xl py-1 h-10 w-full indent-4 focus:outline-none border"
                     [ngClass]="{'border-red-500': isFieldInvalid('name'), 'border-green-500': isFieldValid('name')}"
                     formControlName="name" required>
@@ -19,7 +19,7 @@
             </div>
 
             <div class="mb-4">
-                <label class="block text-blue-700 font-bold mb-2">Código Modular:</label>
+                <label class="block text-blue-400 font-bold mb-2">Código Modular:</label>
                 <input type="text" class="bg-gray-100 rounded-2xl py-1 h-10 w-full indent-4 focus:outline-none border"
                     [ngClass]="{'border-red-500': isFieldInvalid('modularCode'), 'border-green-500': isFieldValid('modularCode')}"
                     formControlName="modularCode" required>
@@ -33,7 +33,7 @@
             </div>
 
             <div class="mb-4">
-                <label class="block text-blue-700 font-bold mb-2">DRE/GRE:</label>
+                <label class="block text-blue-400 font-bold mb-2">DRE/GRE:</label>
                 <input type="text" class="bg-gray-100 rounded-2xl py-1 h-10 w-full indent-4 focus:outline-none border"
                     [ngClass]="{'border-red-500': isFieldInvalid('dreGre'), 'border-green-500': isFieldValid('dreGre')}"
                     formControlName="dreGre" required>
@@ -45,7 +45,7 @@
             </div>
 
             <div class="mb-4">
-                <label class="block text-blue-700 font-bold mb-2">Tipo de Gestión:</label>
+                <label class="block text-blue-400 font-bold mb-2">Tipo de Gestión:</label>
                 <select class="bg-gray-100 rounded-2xl py-1 h-10 w-full indent-4 focus:outline-none border"
                     [ngClass]="{'border-red-500': isFieldInvalid('managementType'), 'border-green-500': isFieldValid('managementType')}"
                     formControlName="managementType" required>
@@ -60,9 +60,9 @@
 
             <div class="flex flex-row justify-center gap-x-4">
                 <button (click)="onCloseForm()" type="button"
-                    class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Cerrar</button>
+                    class="font-medium py-2 px-4 rounded-xl border border-blue-500 text-blue-500 hover:bg-blue-700 hover:text-white">Cancelar</button>
                 <button [disabled]="form.invalid" type="submit"
-                    class="bg-blue-700 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded">Guardar</button>
+                    class="font-medium py-2 px-4 rounded-xl text-white bg-blue-500 hover:bg-blue-700">Guardar</button>
             </div>
         </section>
     </form>

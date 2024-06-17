@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ExportAsConfig, ExportAsService } from 'ngx-export-as';
 import { ToastrService } from 'ngx-toastr';
 import { Cetpro } from 'src/app/interfaces/Cetpro';
 import { ApiService } from 'src/app/service/api-service.service';
@@ -17,6 +18,7 @@ export class ListCetproComponent {
   constructor(
     private apiService: ApiService,
     private toast: ToastrService,
+    private exportService: ExportAsService
   ) { }
 
   onEditClick(item: Cetpro) {
@@ -39,5 +41,21 @@ export class ListCetproComponent {
         this.toast.success('Reactivación exitosa', 'Éxito');
       }
     );
+  }
+
+  exportData(typeData: any): void {
+    const config: ExportAsConfig = {
+      type: typeData,
+      elementIdOrContent: 'table',
+      options: {
+        orientation: 'landscape',
+      }
+    }
+
+    const fileName = 'cetpros';
+    this.exportService.save(config, fileName).subscribe(() => {
+      this.toast.success('Exportación exitosa', 'Éxito');
+    });
+
   }
 }

@@ -11,6 +11,7 @@ import { FormCetproComponent } from './components/Cetpro/form-cetpro/form-cetpro
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IconsComponent } from './ui/icons/icons.component';
 import { ToastrModule } from 'ngx-toastr';
+import { ExportAsModule } from 'ngx-export-as';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { ToastrModule } from 'ngx-toastr';
       timeOut: 3000,
       positionClass: 'toast-top-right',
     }),
+    ExportAsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
